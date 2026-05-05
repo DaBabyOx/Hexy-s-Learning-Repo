@@ -1,0 +1,22 @@
+services:
+  vendor-agnostic-rl:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        JAX_ACCELERATOR: ${JAX_ACCELERATOR:-cuda12}
+    image: vendor-agnostic-rl:latest
+    container_name: vendor-agnostic-rl
+    working_dir: /workspace
+    volumes:
+      - .:/workspace
+    environment:
+      MUJOCO_GL: ${MUJOCO_GL:-egl}
+      PYOPENGL_PLATFORM: ${PYOPENGL_PLATFORM:-egl}
+      XLA_PYTHON_CLIENT_PREALLOCATE: ${XLA_PYTHON_CLIENT_PREALLOCATE:-false}
+      NVIDIA_VISIBLE_DEVICES: ${NVIDIA_VISIBLE_DEVICES:-all}
+      NVIDIA_DRIVER_CAPABILITIES: ${NVIDIA_DRIVER_CAPABILITIES:-compute,utility,graphics}
+    gpus: all
+    tty: true
+    stdin_open: true
+    command: bash
