@@ -18,6 +18,7 @@ DEFAULTS: Dict[str, Any] = {
     "env": {
         "episode_length": 1000,
         "action_repeat": 1,
+        "action_scale": 0.3,
         "target_velocity": 0.6,
         "ctrl_cost": 0.02,
         "orient_cost": 1.0,

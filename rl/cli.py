@@ -43,6 +43,7 @@ def main() -> int:
         model_path=MODEL_PATH,
         episode_length=int(env_cfg["episode_length"]),
         action_repeat=int(env_cfg["action_repeat"]),
+        action_scale=float(env_cfg.get("action_scale", 0.3)),
         target_velocity=float(env_cfg["target_velocity"]),
         ctrl_cost=float(env_cfg["ctrl_cost"]),
         orient_cost=float(env_cfg["orient_cost"]),

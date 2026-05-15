@@ -18,6 +18,7 @@ class BraxHexapodConfig:
     model_path: Path
     episode_length: int
     action_repeat: int
+    action_scale: float
     target_velocity: float
     ctrl_cost: float
     orient_cost: float
@@ -77,6 +78,7 @@ class BraxHexapodEnv(PipelineEnv):
         return State(pipeline_state, obs, reward, done, metrics)
 
     def step(self, state: State, action: jax.Array) -> State:
+        action = jp.clip(action, -1.0, 1.0) * self.cfg.action_scale
         pipeline_state0 = state.pipeline_state
         assert pipeline_state0 is not None
         pipeline_state = self.pipeline_step(pipeline_state0, action)

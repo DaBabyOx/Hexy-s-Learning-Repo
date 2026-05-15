@@ -15,6 +15,7 @@ class HexapodEnvConfig:
     model_path: Path
     episode_length: int
     action_repeat: int
+    action_scale: float
     target_velocity: float
     ctrl_cost: float
     orient_cost: float
@@ -89,7 +90,7 @@ class MujocoHexapodEnv:
         return self._get_obs()
 
     def step(self, action: np.ndarray) -> Tuple[np.ndarray, float, bool, Dict[str, float]]:
-        action = np.clip(action, -1.0, 1.0)
+        action = np.clip(action, -1.0, 1.0) * self.cfg.action_scale
         for _ in range(self.cfg.action_repeat):
             self.data.ctrl[:] = action
             self._mujoco.mj_step(self.model, self.data)
