@@ -32,4 +32,15 @@ class CsvLogger:
 
     def log_config(self, config: Dict[str, Any]) -> None:
         path = self.log_dir / "config.json"
-        path.write_text(json.dumps(config, indent=2), encoding="utf-8")
+        safe = _json_safe(config)
+        path.write_text(json.dumps(safe, indent=2), encoding="utf-8")
+
+
+def _json_safe(value: Any) -> Any:
+    if isinstance(value, dict):
+        return {key: _json_safe(val) for key, val in value.items()}
+    if isinstance(value, list):
+        return [_json_safe(item) for item in value]
+    if isinstance(value, Path):
+        return str(value)
+    return value
