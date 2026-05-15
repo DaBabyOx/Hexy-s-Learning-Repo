@@ -41,6 +41,8 @@ def _json_safe(value: Any) -> Any:
         return {key: _json_safe(val) for key, val in value.items()}
     if isinstance(value, list):
         return [_json_safe(item) for item in value]
+    if hasattr(value, "__dict__") and not isinstance(value, (str, bytes)):
+        return _json_safe(value.__dict__)
     if isinstance(value, Path):
         return str(value)
     return value
