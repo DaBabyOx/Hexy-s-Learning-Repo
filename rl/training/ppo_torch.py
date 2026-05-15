@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+import multiprocessing as mp
+import os
 from pathlib import Path
 from typing import Dict, List, Tuple
 import time
@@ -12,6 +14,26 @@ from rl.common.seeding import seed_all, fold_in_seed
 from rl.envs.mujoco_hexapod import HexapodEnvConfig, MujocoHexapodEnv
 from rl.envs.terrain import HeightfieldSpec
 from rl.policy.unified_policy import export_unified_policy, extract_torch_mlp
+
+
+def _env_worker(cfg: HexapodEnvConfig, seeds: list, pipe: mp.connection.Connection) -> None:
+    """Worker process: owns a slice of environments and steps them on request."""
+    rngs = [np.random.default_rng(s) for s in seeds]
+    envs = [MujocoHexapodEnv(HexapodEnvConfig(**cfg.__dict__)) for _ in seeds]
+    while True:
+        cmd, data = pipe.recv()
+        if cmd == "reset":
+            pipe.send([env.reset(rng) for env, rng in zip(envs, rngs)])
+        elif cmd == "step":
+            results = []
+            for env, rng, action in zip(envs, rngs, data):
+                ob, rew, done, info = env.step(action)
+                if done:
+                    ob = env.reset(rng)
+                results.append((ob, rew, done, info))
+            pipe.send(results)
+        elif cmd == "close":
+            return
 
 
 @dataclass
@@ -62,35 +84,74 @@ class RunningMeanStd:
 
 class MujocoVecEnv:
     def __init__(self, cfg: HexapodEnvConfig, num_envs: int, seed: int):
-        self.envs = []
-        for idx in range(num_envs):
-            env_seed = fold_in_seed(seed, idx)
-            env_cfg = HexapodEnvConfig(**cfg.__dict__)
-            self.envs.append((MujocoHexapodEnv(env_cfg), np.random.default_rng(env_seed)))
         self.num_envs = num_envs
-        self.action_size = self.envs[0][0].action_size
-        self.observation_size = self.envs[0][0].observation_size
+        num_workers = min(num_envs, os.cpu_count() or 1)
+
+        # Sizes from a throwaway env (cheap: no rollout yet)
+        _tmp = MujocoHexapodEnv(cfg)
+        self.observation_size = _tmp.observation_size
+        self.action_size = _tmp.action_size
+        del _tmp
+
+        seeds = [fold_in_seed(seed, i) for i in range(num_envs)]
+        chunks = [list(range(i, num_envs, num_workers)) for i in range(num_workers)]
+
+        self._pipes: List[mp.connection.Connection] = []
+        self._chunk_sizes: List[int] = []
+        self._procs: List[mp.Process] = []
+        for chunk in chunks:
+            if not chunk:
+                continue
+            chunk_seeds = [seeds[i] for i in chunk]
+            parent_pipe, child_pipe = mp.Pipe()
+            proc = mp.Process(
+                target=_env_worker,
+                args=(cfg, chunk_seeds, child_pipe),
+                daemon=True,
+            )
+            proc.start()
+            child_pipe.close()
+            self._pipes.append(parent_pipe)
+            self._chunk_sizes.append(len(chunk))
+            self._procs.append(proc)
 
     def reset(self) -> np.ndarray:
-        obs = [env.reset(rng) for env, rng in self.envs]
+        for pipe in self._pipes:
+            pipe.send(("reset", None))
+        obs = []
+        for pipe in self._pipes:
+            obs.extend(pipe.recv())
         return np.stack(obs, axis=0)
 
     def step(self, actions: np.ndarray) -> Tuple[np.ndarray, np.ndarray, np.ndarray, List[Dict[str, float]]]:
+        offset = 0
+        for pipe, size in zip(self._pipes, self._chunk_sizes):
+            pipe.send(("step", actions[offset:offset + size]))
+            offset += size
         obs, rewards, dones, infos = [], [], [], []
-        for (env, rng), action in zip(self.envs, actions):
-            ob, reward, done, info = env.step(action)
-            if done:
-                ob = env.reset(rng)
-            obs.append(ob)
-            rewards.append(reward)
-            dones.append(done)
-            infos.append(info)
+        for pipe in self._pipes:
+            for ob, rew, done, info in pipe.recv():
+                obs.append(ob)
+                rewards.append(rew)
+                dones.append(done)
+                infos.append(info)
         return (
             np.stack(obs, axis=0),
             np.asarray(rewards, dtype=np.float32),
             np.asarray(dones, dtype=np.float32),
             infos,
         )
+
+    def close(self) -> None:
+        for pipe in self._pipes:
+            try:
+                pipe.send(("close", None))
+            except Exception:
+                pass
+        for proc in self._procs:
+            proc.join(timeout=5)
+            if proc.is_alive():
+                proc.terminate()
 
 
 class PolicyValueNet:
@@ -199,6 +260,7 @@ def train_torch(
             last_checkpoint = global_step
 
     _save_checkpoint(model, rms, log_dir, global_step, policy_cfg, export_unified)
+    vec_env.close()
 
 
 def _collect_rollout(model, rms: RunningMeanStd, env: MujocoVecEnv, obs: np.ndarray, cfg: TorchPPOConfig, device):
