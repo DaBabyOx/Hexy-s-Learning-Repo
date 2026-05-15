@@ -47,16 +47,21 @@ class MujocoHexapodEnv:
         self.step_count = 0
         self.nq_root = 7
         self.nv_root = 6
-        self.joint_ranges = self._build_joint_ranges()
+        self.joint_ranges, self.joint_qpos_ids = self._build_joint_ranges()
 
-    def _build_joint_ranges(self) -> np.ndarray:
+    def _build_joint_ranges(self) -> tuple[np.ndarray, np.ndarray]:
         ranges = []
+        qpos_ids = []
         for j in range(self.model.njnt):
             if self.model.jnt_type[j] != self._mujoco.mjtJoint.mjJNT_HINGE:
                 continue
             low, high = self.model.jnt_range[j]
             ranges.append((low, high))
-        return np.asarray(ranges, dtype=np.float32)
+            qpos_ids.append(self.model.jnt_qposadr[j])
+        return (
+            np.asarray(ranges, dtype=np.float32),
+            np.asarray(qpos_ids, dtype=np.int32),
+        )
 
     @property
     def action_size(self) -> int:
@@ -108,7 +113,7 @@ class MujocoHexapodEnv:
     def _joint_limit_cost(self) -> float:
         if self.joint_ranges.size == 0:
             return 0.0
-        qpos = self.data.qpos[self.nq_root : self.nq_root + len(self.joint_ranges)]
+        qpos = self.data.qpos[self.joint_qpos_ids]
         low = self.joint_ranges[:, 0]
         high = self.joint_ranges[:, 1]
         below = np.clip(low - qpos, 0.0, None)
