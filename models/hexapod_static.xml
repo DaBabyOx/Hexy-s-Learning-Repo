@@ -1,6 +1,6 @@
 <mujoco model="vendor_agnostic_hexapod_static">
   <compiler angle="degree" meshdir="../STLFILES"/>
-  <option timestep="0.01" gravity="0 0 -9.81"/>
+  <option timestep="0.01" gravity="0 0 -9.81" integrator="implicit"/>
 
   <visual>
     <headlight ambient="0.5 0.5 0.5" diffuse="0.7 0.7 0.7" specular="0.1 0.1 0.1"/>
@@ -36,7 +36,9 @@
     <geom name="floor" type="plane" pos="0 0 0" size="3 3 0.1" material="grid"/>
 
     <body name="hexapod" pos="0 0 0.065">
-      <geom name="body_visual" type="mesh" mesh="BODY" pos="0.000000 0.001821 -0.065769" rgba="0.72 0.72 0.76 1" contype="1" conaffinity="1" friction="0.8 0.1 0.1"/>
+      <freejoint name="root"/>
+      <inertial pos="0 0 0" mass="0.5" diaginertia="0.002 0.002 0.003"/>
+      <geom name="body_visual" type="mesh" mesh="BODY" pos="0.000000 0.001821 -0.065769" rgba="0.72 0.72 0.76 1" contype="0" conaffinity="0"/>
 
       <body name="front_left" pos="0.030114 -0.038011 -0.012401">
         <inertial pos="0 0 0" mass="0.20" diaginertia="0.00025 0.00025 0.00025"/>
