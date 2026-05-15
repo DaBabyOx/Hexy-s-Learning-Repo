@@ -7,3 +7,6 @@ trimesh==4.12.2
 numpy>=1.26,<3.0
 scipy>=1.13,<2.0
 etils>=1.9
+torch
+flax
+optax
