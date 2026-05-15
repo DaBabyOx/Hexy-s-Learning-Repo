@@ -94,6 +94,10 @@ class MujocoHexapodEnv:
         for _ in range(self.cfg.action_repeat):
             self.data.ctrl[:] = action
             self._mujoco.mj_step(self.model, self.data)
+            if not (np.isfinite(self.data.qpos).all() and np.isfinite(self.data.qvel).all()):
+                obs = np.zeros(self.observation_size, dtype=np.float32)
+                metrics = {"state/nan": 1.0}
+                return obs, -1.0, True, metrics
         self.step_count += 1
         obs = self._get_obs()
         reward, metrics = self._get_reward(action)
