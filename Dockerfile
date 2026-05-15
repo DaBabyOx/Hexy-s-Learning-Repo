@@ -1,6 +1,4 @@
-FROM python:3.11-slim-bookworm
-
-ARG JAX_ACCELERATOR=cpu
+FROM rocm/jax:rocm7.2.3-jax0.8.2-py3.11
 
 ENV DEBIAN_FRONTEND=noninteractive \
     PIP_NO_CACHE_DIR=1 \
@@ -31,14 +29,10 @@ COPY requirements.txt /tmp/requirements.txt
 
 RUN python -m pip install --upgrade pip setuptools wheel
 RUN python -m pip install --no-cache-dir -r /tmp/requirements.txt
-RUN if [ "$JAX_ACCELERATOR" = "cpu" ]; then \
-      python -m pip install --no-cache-dir --upgrade "jax"; \
-    elif [ "$JAX_ACCELERATOR" = "cuda12" ]; then \
-      python -m pip install --no-cache-dir --upgrade "jax[cuda12]"; \
-    else \
-      echo "Unsupported JAX_ACCELERATOR=$JAX_ACCELERATOR" && exit 1; \
-    fi
+
 
 COPY . /workspace
+
+RUN chmod +x /workspace/tools/run_pipeline.sh
 
 CMD ["bash"]
