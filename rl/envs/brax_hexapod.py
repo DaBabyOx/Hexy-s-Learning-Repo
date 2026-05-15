@@ -6,6 +6,7 @@ from typing import Dict
 
 from brax.envs.base import PipelineEnv, State
 from brax.io import mjcf
+from brax import math as brax_math
 import jax
 from jax import numpy as jp
 
@@ -57,11 +58,14 @@ class BraxHexapodEnv(PipelineEnv):
 
     def reset(self, rng: jax.Array) -> State:
         rng, rng1, rng2 = jax.random.split(rng, 3)
-        low, high = -self.cfg.reset_noise, self.cfg.reset_noise
-        q = self.sys.init_q + jax.random.uniform(
-            rng1, (self.sys.q_size(),), minval=low, maxval=high
+        noise = jax.random.uniform(
+            rng1, (self.sys.q_size(),),
+            minval=-self.cfg.reset_noise, maxval=self.cfg.reset_noise,
         )
-        qd = high * jax.random.normal(rng2, (self.sys.qd_size(),))
+        # Mask out the root quaternion (indices 3-6 of the freejoint) to keep it unit
+        quat_mask = jp.ones(self.sys.q_size()).at[3:7].set(0.0)
+        q = self.sys.init_q + noise * quat_mask
+        qd = self.cfg.reset_noise * 0.1 * jax.random.normal(rng2, (self.sys.qd_size(),))
         pipeline_state = self.pipeline_init(q, qd)
         obs = self._get_obs(pipeline_state)
         reward = jp.zeros(())
@@ -94,9 +98,8 @@ class BraxHexapodEnv(PipelineEnv):
         return jp.concatenate([base_vel, qpos, qvel])
 
     def _get_up_z(self, pipeline_state) -> jax.Array:
-        mat = pipeline_state.x.mat[self._root_link]
-        up = mat[:, 2]
-        return up[2]
+        mat = brax_math.quat_to_3x3(pipeline_state.x.rot[self._root_link])
+        return mat[2, 2]
 
     def _joint_limit_cost(self, pipeline_state) -> jax.Array:
         if self._joint_ranges.shape[0] == 0:
