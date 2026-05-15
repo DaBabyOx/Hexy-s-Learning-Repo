@@ -80,12 +80,17 @@ class MujocoHexapodEnv:
             self.data.qpos[:] = self.model.qpos0
         self.data.qvel[:] = 0.0
         if self.cfg.reset_noise > 0.0:
-            q_noise = rng.uniform(
-                low=-self.cfg.reset_noise, high=self.cfg.reset_noise, size=self.model.nq
+            # Only perturb joint DOFs (skip root quaternion at indices 3-6)
+            self.data.qpos[:3] += rng.uniform(
+                -self.cfg.reset_noise * 0.1, self.cfg.reset_noise * 0.1, size=3
             )
-            qd_noise = rng.normal(scale=self.cfg.reset_noise, size=self.model.nv)
-            self.data.qpos[:] = self.data.qpos + q_noise
-            self.data.qvel[:] = self.data.qvel + qd_noise
+            if self.model.nq > 7:
+                self.data.qpos[7:] += rng.uniform(
+                    -self.cfg.reset_noise, self.cfg.reset_noise, size=self.model.nq - 7
+                )
+            self.data.qvel[:] += rng.uniform(
+                -self.cfg.reset_noise * 0.1, self.cfg.reset_noise * 0.1, size=self.model.nv
+            )
         self._mujoco.mj_forward(self.model, self.data)
         return self._get_obs()
 
@@ -94,7 +99,11 @@ class MujocoHexapodEnv:
         for _ in range(self.cfg.action_repeat):
             self.data.ctrl[:] = action
             self._mujoco.mj_step(self.model, self.data)
-            if not (np.isfinite(self.data.qpos).all() and np.isfinite(self.data.qvel).all()):
+            if not (
+                np.isfinite(self.data.qpos).all()
+                and np.isfinite(self.data.qvel).all()
+                and np.isfinite(self.data.qacc).all()
+            ):
                 obs = np.zeros(self.observation_size, dtype=np.float32)
                 metrics = {"state/nan": 1.0}
                 return obs, -1.0, True, metrics
