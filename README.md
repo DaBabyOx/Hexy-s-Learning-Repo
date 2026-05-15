@@ -42,6 +42,7 @@ docker compose run --rm vendor-agnostic-rl-train
 ROCm (MI300X) notes:
 - The Docker image uses the ROCm JAX base: `rocm/jax:rocm7.2.3-jax0.8.2-py3.11`.
 - Switch to the py3.12 variant by editing the `FROM` line in Dockerfile.
+- The compose file maps `/dev/kfd` and `/dev/dri` for ROCm devices.
 
 To override which backends run in each stage:
 ```

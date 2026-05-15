@@ -12,9 +12,11 @@ services:
       MUJOCO_GL: ${MUJOCO_GL:-egl}
       PYOPENGL_PLATFORM: ${PYOPENGL_PLATFORM:-egl}
       XLA_PYTHON_CLIENT_PREALLOCATE: ${XLA_PYTHON_CLIENT_PREALLOCATE:-false}
-      NVIDIA_VISIBLE_DEVICES: ${NVIDIA_VISIBLE_DEVICES:-all}
-      NVIDIA_DRIVER_CAPABILITIES: ${NVIDIA_DRIVER_CAPABILITIES:-compute,utility,graphics}
-    gpus: all
+    devices:
+      - /dev/kfd
+      - /dev/dri
+    group_add:
+      - video
     tty: true
     stdin_open: true
     command: bash
@@ -32,9 +34,11 @@ services:
       MUJOCO_GL: ${MUJOCO_GL:-egl}
       PYOPENGL_PLATFORM: ${PYOPENGL_PLATFORM:-egl}
       XLA_PYTHON_CLIENT_PREALLOCATE: ${XLA_PYTHON_CLIENT_PREALLOCATE:-false}
-      NVIDIA_VISIBLE_DEVICES: ${NVIDIA_VISIBLE_DEVICES:-all}
-      NVIDIA_DRIVER_CAPABILITIES: ${NVIDIA_DRIVER_CAPABILITIES:-compute,utility,graphics}
-    gpus: all
+    devices:
+      - /dev/kfd
+      - /dev/dri
+    group_add:
+      - video
     tty: false
     stdin_open: false
     command: ["bash", "tools/run_pipeline.sh"]
