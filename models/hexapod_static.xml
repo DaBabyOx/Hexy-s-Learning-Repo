@@ -1,6 +1,6 @@
 <mujoco model="vendor_agnostic_hexapod_static">
   <compiler angle="degree" meshdir="../STLFILES"/>
-  <option timestep="0.01" gravity="0 0 -9.81" integrator="implicit"/>
+  <option timestep="0.01" gravity="0 0 -9.81"/>
 
   <visual>
     <headlight ambient="0.5 0.5 0.5" diffuse="0.7 0.7 0.7" specular="0.1 0.1 0.1"/>
