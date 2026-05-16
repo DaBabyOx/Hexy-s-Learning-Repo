@@ -393,15 +393,16 @@ def _evaluate(model, rms: RunningMeanStd, env: MujocoVecEnv, episodes: int, devi
     returns = []
     for _ in range(episodes):
         obs = env.reset()
-        done = np.zeros((env.num_envs,), dtype=np.float32)
-        ret = np.zeros((env.num_envs,), dtype=np.float32)
-        while not done.all():
+        finished = np.zeros(env.num_envs, dtype=bool)
+        ret = np.zeros(env.num_envs, dtype=np.float32)
+        while not finished.all():
             obs_t = torch.tensor(_normalize(obs, rms, True), dtype=torch.float32, device=device)
             with torch.no_grad():
                 mean, _ = model.forward(obs_t)
             action = torch.tanh(mean).cpu().numpy()
             obs, reward, done, _ = env.step(action)
-            ret += reward * (1.0 - done)
+            ret += reward * ~finished
+            finished |= done.astype(bool)
         returns.append(float(np.mean(ret)))
     return float(np.mean(returns))
 

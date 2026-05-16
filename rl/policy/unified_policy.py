@@ -73,7 +73,8 @@ def extract_brax_mlp(params) -> Tuple[List[np.ndarray], List[np.ndarray]]:
         if not key.endswith("kernel") and not key.endswith("bias"):
             continue
         parts = key.split("/")
-        dense_name = next((p for p in parts if p.startswith("Dense_")), None)
+        # Brax MLP layers are named "hidden_0", "hidden_1", etc.
+        dense_name = next((p for p in parts if p.startswith("hidden_")), None)
         if dense_name is None:
             continue
         idx = int(dense_name.split("_")[1])
@@ -82,8 +83,16 @@ def extract_brax_mlp(params) -> Tuple[List[np.ndarray], List[np.ndarray]]:
     weights: List[np.ndarray] = []
     biases: List[np.ndarray] = []
     for idx in sorted(dense.keys()):
-        weights.append(np.array(dense[idx]["kernel"]))
-        biases.append(np.array(dense[idx]["bias"]))
+        kernel = np.array(dense[idx]["kernel"])
+        bias = np.array(dense[idx]["bias"])
+        # The final hidden layer outputs [mean, log_std] concatenated (2 * action_size).
+        # Slice to mean-only so the unified policy matches the Torch export shape.
+        if idx == max(dense.keys()):
+            action_size = bias.shape[0] // 2
+            kernel = kernel[:, :action_size]
+            bias = bias[:action_size]
+        weights.append(kernel)
+        biases.append(bias)
     return weights, biases
 
 

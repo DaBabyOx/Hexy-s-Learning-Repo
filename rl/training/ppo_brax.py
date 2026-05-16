@@ -5,7 +5,7 @@ from pathlib import Path
 from typing import Dict, List
 
 from brax.training.agents.ppo import networks as ppo_networks
-from brax.training.agents.ppo import train as ppo_train
+from brax.training.agents.ppo.train import train as ppo_train
 import jax
 import numpy as np
 
@@ -66,7 +66,12 @@ def train_brax(
     )
 
     def progress_fn(step, metrics):
-        log_metrics = {k: float(v) for k, v in metrics.items() if isinstance(v, (int, float))}
+        log_metrics = {}
+        for k, v in metrics.items():
+            try:
+                log_metrics[k] = float(v)
+            except (TypeError, ValueError):
+                pass
         logger.log(step, log_metrics)
 
     def policy_params_fn(step, make_policy, params):

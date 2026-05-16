@@ -37,6 +37,8 @@ class MujocoHexapodEnv:
         self.cfg = cfg
         xml_text = cfg.model_path.read_text(encoding="utf-8")
         if cfg.terrain == "heightfield" and cfg.heightfield is not None:
+            mesh_dir = (cfg.model_path.parent / "../STLFILES").resolve()
+            xml_text = xml_text.replace('meshdir="../STLFILES"', f'meshdir="{mesh_dir}"')
             xml_text = make_heightfield_xml(xml_text, cfg.heightfield)
             self.model = mujoco.MjModel.from_xml_string(xml_text)
         else:
