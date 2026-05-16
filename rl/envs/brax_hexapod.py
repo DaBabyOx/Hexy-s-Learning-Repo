@@ -35,6 +35,10 @@ class BraxHexapodEnv(PipelineEnv):
         xml_text = cfg.model_path.read_text(encoding="utf-8")
         if cfg.terrain == "heightfield" and cfg.heightfield is not None:
             xml_text = make_heightfield_xml(xml_text, cfg.heightfield)
+        # mjcf.loads → from_xml_string has no file context, so relative meshdir fails.
+        # Replace it with the resolved absolute path before loading.
+        mesh_dir = (cfg.model_path.parent / "../STLFILES").resolve()
+        xml_text = xml_text.replace('meshdir="../STLFILES"', f'meshdir="{mesh_dir}"')
         sys = mjcf.loads(xml_text)
         super().__init__(sys=sys, backend=backend, n_frames=cfg.action_repeat)
         self.cfg = cfg
