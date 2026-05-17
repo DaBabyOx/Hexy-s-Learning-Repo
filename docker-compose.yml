@@ -34,11 +34,23 @@ services:
       MUJOCO_GL: ${MUJOCO_GL:-egl}
       PYOPENGL_PLATFORM: ${PYOPENGL_PLATFORM:-egl}
       XLA_PYTHON_CLIENT_PREALLOCATE: ${XLA_PYTHON_CLIENT_PREALLOCATE:-false}
+      # ROCm stability: polling completion avoids null kernarg/signal dispatch bug
+      HSA_ENABLE_INTERRUPT: "0"
+      # Restrict JAX to a single GPU — 9 DRI cards visible but only 1 MI300X
+      ROCR_VISIBLE_DEVICES: "0"
+      HIP_VISIBLE_DEVICES: "0"
     devices:
       - /dev/kfd
       - /dev/dri
     group_add:
       - video
+    # Required for ROCm to lock GPU memory pages inside Docker
+    security_opt:
+      - seccomp:unconfined
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
     tty: false
     stdin_open: false
     command: ["bash", "tools/run_pipeline.sh"]
