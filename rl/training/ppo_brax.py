@@ -22,10 +22,16 @@ except AttributeError:
 
     def _device_put_replicated(x, devices):
         n = len(devices)
-        x_rep = _jnp.broadcast_to(_jnp.expand_dims(x, 0), (n,) + _jnp.shape(x))
         mesh = Mesh(_np.array(devices), ('replica',))
         sharding = NamedSharding(mesh, P('replica'))
-        return jax.device_put(x_rep, sharding)
+
+        def _replicate(leaf):
+            leaf_rep = _jnp.broadcast_to(
+                _jnp.expand_dims(leaf, 0), (n,) + _jnp.shape(leaf)
+            )
+            return jax.device_put(leaf_rep, sharding)
+
+        return jax.tree_util.tree_map(_replicate, x)
 
     jax.device_put_replicated = _device_put_replicated
 
