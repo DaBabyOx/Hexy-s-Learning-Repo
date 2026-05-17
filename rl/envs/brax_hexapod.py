@@ -93,7 +93,10 @@ class BraxHexapodEnv(PipelineEnv):
         obs = self._get_obs(pipeline_state)
         reward, metrics = self._get_reward(pipeline_state, action)
         done = jp.zeros(())
-        return state.replace(pipeline_state=pipeline_state, obs=obs, reward=reward, done=done, metrics=metrics)
+        # Preserve any keys injected by Brax wrappers (e.g. 'reward') so the
+        # JAX scan carry structure stays consistent across steps.
+        combined_metrics = {**state.metrics, **metrics}
+        return state.replace(pipeline_state=pipeline_state, obs=obs, reward=reward, done=done, metrics=combined_metrics)
 
     def _get_obs(self, pipeline_state) -> jax.Array:
         qpos = pipeline_state.q[self.nq_root :]
