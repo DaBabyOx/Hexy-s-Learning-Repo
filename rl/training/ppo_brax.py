@@ -120,12 +120,20 @@ def train_brax(
         )
 
     num_evals = max(2, int(ppo_cfg.total_steps // max(1, eval_interval)))
+    n_devices = jax.local_device_count()
+    if n_devices > 1:
+        import warnings
+        warnings.warn(
+            f"JAX sees {n_devices} logical devices (MI300X multi-GCD). "
+            "Restricting Brax pmap to 1 device via max_devices_per_host=1."
+        )
     (make_policy, params, metrics) = ppo_train(
         env,
         num_timesteps=ppo_cfg.total_steps,
         episode_length=env_cfg.episode_length,
         action_repeat=env_cfg.action_repeat,
         num_envs=ppo_cfg.num_envs,
+        max_devices_per_host=1,
         unroll_length=ppo_cfg.rollout_length,
         batch_size=ppo_cfg.minibatch_size,
         num_minibatches=max(1, (ppo_cfg.num_envs * ppo_cfg.rollout_length) // ppo_cfg.minibatch_size),

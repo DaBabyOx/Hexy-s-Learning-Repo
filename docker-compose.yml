@@ -39,6 +39,10 @@ services:
       # Restrict JAX to a single GPU — 9 DRI cards visible but only 1 MI300X
       ROCR_VISIBLE_DEVICES: "0"
       HIP_VISIBLE_DEVICES: "0"
+      # Platform allocator: direct hipMalloc instead of BFC caching allocator.
+      # BFC can hand out stale/reused addresses that trigger aperture violations
+      # when MI300X multi-GCD XLA kernels compute pointer offsets.
+      XLA_PYTHON_CLIENT_ALLOCATOR: "platform"
     devices:
       - /dev/kfd
       - /dev/dri
