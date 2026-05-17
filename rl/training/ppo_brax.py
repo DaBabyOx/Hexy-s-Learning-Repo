@@ -9,17 +9,23 @@ import numpy as np
 
 # Brax calls jax.device_put_replicated which was removed in newer JAX.
 # Patch it back before importing Brax so its internal calls succeed.
+# Brax's _unpmap does x.addressable_shards[0].data.squeeze(0), so each shard
+# must have a leading size-1 axis — achieved by sharding a (n_devices, ...) array
+# along the replica axis so each device owns exactly one slice of shape (1, ...).
 try:
     if not callable(jax.device_put_replicated):
         raise AttributeError
 except AttributeError:
     import numpy as _np
+    import jax.numpy as _jnp
     from jax.sharding import Mesh, NamedSharding, PartitionSpec as P
 
     def _device_put_replicated(x, devices):
+        n = len(devices)
+        x_rep = _jnp.broadcast_to(_jnp.expand_dims(x, 0), (n,) + _jnp.shape(x))
         mesh = Mesh(_np.array(devices), ('replica',))
-        sharding = NamedSharding(mesh, P())
-        return jax.device_put(x, sharding)
+        sharding = NamedSharding(mesh, P('replica'))
+        return jax.device_put(x_rep, sharding)
 
     jax.device_put_replicated = _device_put_replicated
 
