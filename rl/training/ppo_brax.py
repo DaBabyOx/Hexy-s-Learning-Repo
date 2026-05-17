@@ -128,7 +128,7 @@ def train_brax(
         num_envs=ppo_cfg.num_envs,
         unroll_length=ppo_cfg.rollout_length,
         batch_size=ppo_cfg.minibatch_size,
-        num_minibatches=1,
+        num_minibatches=max(1, (ppo_cfg.num_envs * ppo_cfg.rollout_length) // ppo_cfg.minibatch_size),
         num_updates_per_batch=ppo_cfg.update_epochs,
         learning_rate=ppo_cfg.learning_rate,
         discounting=ppo_cfg.gamma,
