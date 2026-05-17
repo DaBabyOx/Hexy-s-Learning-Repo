@@ -31,10 +31,10 @@
   },
   "ppo": {
     "total_steps": 12000000,
-    "num_envs": 8192,
+    "num_envs": 2048,
     "rollout_length": 256,
     "update_epochs": 4,
-    "minibatch_size": 131072,
+    "minibatch_size": 32768,
     "learning_rate": 0.0003,
     "gamma": 0.99,
     "gae_lambda": 0.95,
