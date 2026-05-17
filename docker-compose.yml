@@ -37,19 +37,19 @@ services:
     environment:
       MUJOCO_GL: ${MUJOCO_GL:-egl}
       PYOPENGL_PLATFORM: ${PYOPENGL_PLATFORM:-egl}
-      XLA_PYTHON_CLIENT_PREALLOCATE: ${XLA_PYTHON_CLIENT_PREALLOCATE:-false}
+      # BFC pre-allocation with cap — grabs one contiguous pool upfront,
+      # avoids repeated hipMalloc calls that cross GCD aperture boundaries.
+      XLA_PYTHON_CLIENT_PREALLOCATE: "true"
+      XLA_PYTHON_CLIENT_MEM_FRACTION: "0.85"
       # ROCm stability: polling completion avoids null kernarg/signal dispatch bug
       HSA_ENABLE_INTERRUPT: "0"
       # Restrict JAX to a single GPU — 9 DRI cards visible but only 1 MI300X
       ROCR_VISIBLE_DEVICES: "0"
       HIP_VISIBLE_DEVICES: "0"
-      # Platform allocator: direct hipMalloc instead of BFC caching allocator.
-      XLA_PYTHON_CLIENT_ALLOCATOR: "platform"
-      # Disable XLA command buffers (ROCm graph replay).
-      # When enabled, XLA records kernels via hipGraph and replays them;
-      # on MI300X the replay zeroes the AQL packet 'setup' field (dimensions),
-      # causing HSA_STATUS_ERROR_MEMORY_APERTURE_VIOLATION in fused scan kernels.
-      XLA_FLAGS: "--xla_gpu_enable_command_buffer="
+      # Prevent concurrent dispatch races on same HW queue
+      GPU_MAX_HW_QUEUES: "1"
+      # Disable command buffer replay (hipGraph zeroes AQL setup field on MI300X)
+      XLA_FLAGS: "--xla_gpu_enable_command_buffer=false"
     devices:
       - /dev/kfd
       - /dev/dri

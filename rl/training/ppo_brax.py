@@ -127,6 +127,19 @@ def train_brax(
             f"JAX sees {n_devices} logical devices (MI300X multi-GCD). "
             "Restricting Brax pmap to 1 device via max_devices_per_host=1."
         )
+    # Brax PPO parameter mapping
+    # ─────────────────────────────────────────────────────────────────
+    # batch_size  = environments simulated in parallel per device
+    # num_minibatches = splits the (batch_size * unroll_length) rollout
+    #                   buffer into this many gradient-step mini-batches
+    #
+    # total transitions per training step:
+    #   batch_size × unroll_length × num_minibatches × action_repeat
+    # ─────────────────────────────────────────────────────────────────
+    brax_batch_size = ppo_cfg.num_envs          # envs per device
+    rollout_data = brax_batch_size * ppo_cfg.rollout_length
+    brax_num_minibatches = max(1, rollout_data // ppo_cfg.minibatch_size)
+
     (make_policy, params, metrics) = ppo_train(
         env,
         num_timesteps=ppo_cfg.total_steps,
@@ -135,8 +148,8 @@ def train_brax(
         num_envs=ppo_cfg.num_envs,
         max_devices_per_host=1,
         unroll_length=ppo_cfg.rollout_length,
-        batch_size=ppo_cfg.minibatch_size,
-        num_minibatches=max(1, (ppo_cfg.num_envs * ppo_cfg.rollout_length) // ppo_cfg.minibatch_size),
+        batch_size=brax_batch_size,
+        num_minibatches=brax_num_minibatches,
         num_updates_per_batch=ppo_cfg.update_epochs,
         learning_rate=ppo_cfg.learning_rate,
         discounting=ppo_cfg.gamma,
@@ -148,7 +161,7 @@ def train_brax(
         normalize_observations=ppo_cfg.normalize_obs,
         seed=seed,
         num_evals=num_evals,
-        num_eval_envs=128,
+        num_eval_envs=32,
         progress_fn=progress_fn,
         policy_params_fn=policy_params_fn,
         wrap_env=True,
