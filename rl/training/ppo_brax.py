@@ -4,10 +4,27 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Dict, List
 
-from brax.training.agents.ppo import networks as ppo_networks
-from brax.training.agents.ppo.train import train as ppo_train
 import jax
 import numpy as np
+
+# Brax calls jax.device_put_replicated which was removed in newer JAX.
+# Patch it back before importing Brax so its internal calls succeed.
+try:
+    if not callable(jax.device_put_replicated):
+        raise AttributeError
+except AttributeError:
+    import numpy as _np
+    from jax.sharding import Mesh, NamedSharding, PartitionSpec as P
+
+    def _device_put_replicated(x, devices):
+        mesh = Mesh(_np.array(devices), ('replica',))
+        sharding = NamedSharding(mesh, P())
+        return jax.device_put(x, sharding)
+
+    jax.device_put_replicated = _device_put_replicated
+
+from brax.training.agents.ppo import networks as ppo_networks
+from brax.training.agents.ppo.train import train as ppo_train
 
 from rl.common.logger import CsvLogger
 from rl.common.seeding import seed_all
