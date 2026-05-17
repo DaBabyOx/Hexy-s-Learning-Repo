@@ -48,8 +48,9 @@ services:
       HIP_VISIBLE_DEVICES: "0"
       # Prevent concurrent dispatch races on same HW queue
       GPU_MAX_HW_QUEUES: "1"
-      # Disable command buffer replay (hipGraph zeroes AQL setup field on MI300X)
-      XLA_FLAGS: "--xla_gpu_enable_command_buffer=false"
+      # Disable command buffer replay (hipGraph zeroes AQL setup field on MI300X).
+      # This flag is an enum, not a bool — empty string disables all modes.
+      XLA_FLAGS: "--xla_gpu_enable_command_buffer="
     devices:
       - /dev/kfd
       - /dev/dri
