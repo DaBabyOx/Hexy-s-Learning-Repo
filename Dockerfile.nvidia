@@ -1,0 +1,53 @@
+FROM nvidia/cuda:12.4.1-cudnn-devel-ubuntu22.04
+
+ENV DEBIAN_FRONTEND=noninteractive \
+    PIP_NO_CACHE_DIR=1 \
+    PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    MUJOCO_GL=egl \
+    PYOPENGL_PLATFORM=egl \
+    XLA_PYTHON_CLIENT_PREALLOCATE=false
+
+WORKDIR /workspace
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    bash \
+    build-essential \
+    ca-certificates \
+    git \
+    python3.11 \
+    python3.11-dev \
+    python3.11-venv \
+    python3-pip \
+    libegl1 \
+    libgl1 \
+    libgles2 \
+    libglib2.0-0 \
+    libosmesa6 \
+    libsm6 \
+    libxext6 \
+    libxrender1 \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 1 \
+ && update-alternatives --install /usr/bin/python  python  /usr/bin/python3.11 1
+
+COPY requirements.txt /tmp/requirements.txt
+
+RUN python -m pip install --upgrade pip setuptools wheel
+
+# JAX with CUDA 12 — matches the jax[cuda12] stable channel.
+# On NVIDIA hardware device_put_replicated still exists; the monkey-patch in
+# ppo_brax.py is a no-op because the try-block succeeds.
+RUN python -m pip install --no-cache-dir "jax[cuda12]"
+
+# PyTorch standard CUDA wheel (for the MuJoCo/PyTorch backend)
+RUN python -m pip install --no-cache-dir torch
+
+RUN python -m pip install --no-cache-dir -r /tmp/requirements.txt
+
+COPY . /workspace
+
+RUN chmod +x /workspace/tools/run_pipeline.sh
+
+CMD ["bash"]

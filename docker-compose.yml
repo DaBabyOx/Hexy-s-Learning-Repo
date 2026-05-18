@@ -66,3 +66,47 @@ services:
     tty: false
     stdin_open: false
     command: ["bash", "tools/run_pipeline.sh"]
+
+  vendor-agnostic-rl-nvidia:
+    build:
+      context: .
+      dockerfile: Dockerfile.nvidia
+    image: vendor-agnostic-rl-nvidia:latest
+    container_name: vendor-agnostic-rl-nvidia
+    working_dir: /workspace
+    ipc: host
+    shm_size: '8gb'
+    volumes:
+      - .:/workspace
+    environment:
+      MUJOCO_GL: ${MUJOCO_GL:-egl}
+      PYOPENGL_PLATFORM: ${PYOPENGL_PLATFORM:-egl}
+      XLA_PYTHON_CLIENT_PREALLOCATE: ${XLA_PYTHON_CLIENT_PREALLOCATE:-false}
+      CUDA_VISIBLE_DEVICES: "0"
+    runtime: nvidia
+    tty: true
+    stdin_open: true
+    command: bash
+
+  vendor-agnostic-rl-train-nvidia:
+    build:
+      context: .
+      dockerfile: Dockerfile.nvidia
+    image: vendor-agnostic-rl-nvidia:latest
+    container_name: vendor-agnostic-rl-train-nvidia
+    working_dir: /workspace
+    ipc: host
+    shm_size: '8gb'
+    volumes:
+      - .:/workspace
+    environment:
+      MUJOCO_GL: ${MUJOCO_GL:-egl}
+      PYOPENGL_PLATFORM: ${PYOPENGL_PLATFORM:-egl}
+      XLA_PYTHON_CLIENT_PREALLOCATE: "false"
+      # platform allocator avoids BFC pre-grab on unknown VRAM size
+      XLA_PYTHON_CLIENT_ALLOCATOR: "platform"
+      CUDA_VISIBLE_DEVICES: "0"
+    runtime: nvidia
+    tty: false
+    stdin_open: false
+    command: ["python", "-m", "rl.cli", "--config", "configs/ppo_vendor_tuned.json", "--backend", "brax", "--terrain", "flat"]

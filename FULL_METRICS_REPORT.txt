@@ -1,0 +1,575 @@
+﻿================================================================================
+COMPREHENSIVE METRICS REPORT - ALL EXPERIMENTS
+Generated: 05/18/2026 19:32:14
+================================================================================
+
+
+================================================================================
+EXPERIMENT: baseline/mujoco/flat
+================================================================================
+
+--- seed_0 ---
+Final evaluation step: 4816896
+
+[FINAL EVALUATION METRICS]
+  eval/episode_reward: 14.402684
+
+[REWARD COMPONENTS]
+
+[TRAINING CURVE]
+
+--- seed_19946 ---
+Final evaluation step: 4816896
+
+[FINAL EVALUATION METRICS]
+  eval/episode_reward: 637.808983
+
+[REWARD COMPONENTS]
+
+[TRAINING CURVE]
+
+--- seed_29919 ---
+Final evaluation step: 4816896
+
+[FINAL EVALUATION METRICS]
+  eval/episode_reward: 635.606567
+
+[REWARD COMPONENTS]
+
+[TRAINING CURVE]
+
+--- seed_39892 ---
+Final evaluation step: 4816896
+
+[FINAL EVALUATION METRICS]
+  eval/episode_reward: -403.671375
+
+[REWARD COMPONENTS]
+
+[TRAINING CURVE]
+
+--- seed_9973 ---
+Final evaluation step: 4816896
+
+[FINAL EVALUATION METRICS]
+  eval/episode_reward: 638.723137
+
+[REWARD COMPONENTS]
+
+[TRAINING CURVE]
+
+================================================================================
+EXPERIMENT: baseline/mujoco/heightfield
+================================================================================
+
+--- seed_0 ---
+Final evaluation step: 4816896
+
+[FINAL EVALUATION METRICS]
+  eval/episode_reward: 462.959171
+
+[REWARD COMPONENTS]
+
+[TRAINING CURVE]
+
+--- seed_19946 ---
+Final evaluation step: 4816896
+
+[FINAL EVALUATION METRICS]
+  eval/episode_reward: 586.091454
+
+[REWARD COMPONENTS]
+
+[TRAINING CURVE]
+
+--- seed_29919 ---
+Final evaluation step: 4816896
+
+[FINAL EVALUATION METRICS]
+  eval/episode_reward: 630.976845
+
+[REWARD COMPONENTS]
+
+[TRAINING CURVE]
+
+--- seed_39892 ---
+Final evaluation step: 4816896
+
+[FINAL EVALUATION METRICS]
+  eval/episode_reward: 541.208244
+
+[REWARD COMPONENTS]
+
+[TRAINING CURVE]
+
+--- seed_9973 ---
+Final evaluation step: 4816896
+
+[FINAL EVALUATION METRICS]
+  eval/episode_reward: 532.806
+
+[REWARD COMPONENTS]
+
+[TRAINING CURVE]
+
+================================================================================
+EXPERIMENT: baseline/brax/flat
+================================================================================
+
+--- seed_0 ---
+Final evaluation step: 100663296
+
+[FINAL EVALUATION METRICS]
+  eval/episode_reward: 673.131165
+  eval/episode_reward_std: 22.916948
+  eval/episode_state/forward_vel: 44.499115
+  eval/episode_state/up_z: 968.17749
+  eval/sps: 2672.67
+  episode/sps: 3868.09
+
+[REWARD COMPONENTS]
+  eval/episode_reward/forward = 675.937988
+  eval/episode_reward/ctrl = -0.282641
+  eval/episode_reward/orient = -2.418808
+  eval/episode_reward/joint = -0.105345
+
+[TRAINING CURVE]
+  Step ~0: 550.682129
+  Step ~500000: 550.682129
+  Step ~1000000: 551.572998
+  Step ~2000000: 623.435059
+  Step ~3000000: 629.491089
+  Step ~4000000: 604.297974
+  Step ~5000000: 604.434448
+  Step ~6000000: 517.815002
+  Step ~8000000: 635.850708
+  Step ~10000000: 590.315552
+  Step ~12000000: 641.229736
+
+--- seed_19946 ---
+Final evaluation step: 25165824
+
+[FINAL EVALUATION METRICS]
+  eval/episode_reward: 647.000427
+  eval/episode_reward_std: 21.273046
+  eval/episode_state/forward_vel: 20.291512
+  eval/episode_state/up_z: 956.311401
+  eval/sps: 3562.25
+  episode/sps: 12559.66
+
+[REWARD COMPONENTS]
+  eval/episode_reward/forward = 651.198242
+  eval/episode_reward/ctrl = -0.238075
+  eval/episode_reward/orient = -3.87572
+  eval/episode_reward/joint = -0.084088
+
+[TRAINING CURVE]
+  Step ~0: 419.622192
+  Step ~500000: 419.622192
+  Step ~1000000: 392.881134
+  Step ~2000000: 83.445694
+  Step ~3000000: 189.855804
+  Step ~4000000: 94.563675
+  Step ~5000000: 421.027832
+  Step ~6000000: 109.965057
+  Step ~8000000: 279.252441
+  Step ~10000000: 274.290283
+  Step ~12000000: 444.789764
+
+--- seed_29919 ---
+Final evaluation step: 25165824
+
+[FINAL EVALUATION METRICS]
+  eval/episode_reward: 679.479614
+  eval/episode_reward_std: 17.12924
+  eval/episode_state/forward_vel: 49.207367
+  eval/episode_state/up_z: 963.086792
+  eval/sps: 4580.32
+  episode/sps: 12697.98
+
+[REWARD COMPONENTS]
+  eval/episode_reward/forward = 682.571899
+  eval/episode_reward/ctrl = -0.236517
+  eval/episode_reward/orient = -2.786452
+  eval/episode_reward/joint = -0.069529
+
+[TRAINING CURVE]
+  Step ~0: -840.451904
+  Step ~500000: -840.451904
+  Step ~1000000: -1033.834473
+  Step ~2000000: -989.031372
+  Step ~3000000: -103.36087
+  Step ~4000000: 79.410072
+  Step ~5000000: 603.239197
+  Step ~6000000: 452.864777
+  Step ~8000000: 609.36499
+  Step ~10000000: 608.138
+  Step ~12000000: 513.238647
+
+--- seed_39892 ---
+Final evaluation step: 25165824
+
+[FINAL EVALUATION METRICS]
+  eval/episode_reward: 651.648621
+  eval/episode_reward_std: 14.525887
+  eval/episode_state/forward_vel: 25.404875
+  eval/episode_state/up_z: 944.101868
+  eval/sps: 5233.16
+  episode/sps: 17251.12
+
+[REWARD COMPONENTS]
+  eval/episode_reward/forward = 656.1427
+  eval/episode_reward/ctrl = -0.232632
+  eval/episode_reward/orient = -4.18991
+  eval/episode_reward/joint = -0.071675
+
+[TRAINING CURVE]
+  Step ~0: -889.627747
+  Step ~500000: -889.627747
+  Step ~1000000: -1190.357178
+  Step ~2000000: -580.418701
+  Step ~3000000: -273.721313
+  Step ~4000000: 127.590485
+  Step ~5000000: 263.191406
+  Step ~6000000: 432.236328
+  Step ~8000000: 600.929688
+  Step ~10000000: 505.067963
+  Step ~12000000: 625.849487
+
+--- seed_9973 ---
+Final evaluation step: 25165824
+
+[FINAL EVALUATION METRICS]
+  eval/episode_reward: 590.127197
+  eval/episode_reward_std: 237.503983
+  eval/episode_state/forward_vel: 24.80191
+  eval/episode_state/up_z: 913.735107
+  eval/sps: 3645.89
+  episode/sps: 12724.25
+
+[REWARD COMPONENTS]
+  eval/episode_reward/forward = 654.698975
+  eval/episode_reward/ctrl = -0.236853
+  eval/episode_reward/orient = -64.250771
+  eval/episode_reward/joint = -0.084157
+
+[TRAINING CURVE]
+  Step ~0: 223.569702
+  Step ~500000: 223.569702
+  Step ~1000000: 271.131744
+  Step ~2000000: 481.022003
+  Step ~3000000: 578.443604
+  Step ~4000000: 574.417114
+  Step ~5000000: 438.849152
+  Step ~6000000: 584.690186
+  Step ~8000000: 614.259399
+  Step ~10000000: 617.029663
+  Step ~12000000: 618.246948
+
+================================================================================
+EXPERIMENT: baseline/brax/heightfield
+================================================================================
+
+--- seed_0 ---
+Final evaluation step: 25165824
+
+[FINAL EVALUATION METRICS]
+  eval/episode_reward: 689.755615
+  eval/episode_reward_std: 28.33596
+  eval/episode_state/forward_vel: 63.180679
+  eval/episode_state/up_z: 972.207703
+  eval/sps: 3309.16
+  episode/sps: 4797.94
+
+[REWARD COMPONENTS]
+  eval/episode_reward/forward = 691.767212
+  eval/episode_reward/ctrl = -0.263378
+  eval/episode_reward/orient = -1.651138
+  eval/episode_reward/joint = -0.097054
+
+[TRAINING CURVE]
+  Step ~0: 554.622192
+  Step ~500000: 554.622192
+  Step ~1000000: 601.747314
+  Step ~2000000: 620.352539
+  Step ~3000000: 627.875
+  Step ~4000000: 625.328308
+  Step ~5000000: 627.831909
+  Step ~6000000: 634.456177
+  Step ~8000000: 642.000427
+  Step ~10000000: 647.50769
+  Step ~12000000: 643.470581
+
+--- seed_19946 ---
+Final evaluation step: 25165824
+
+[FINAL EVALUATION METRICS]
+  eval/episode_reward: 626.889893
+  eval/episode_reward_std: 13.972223
+  eval/episode_state/forward_vel: 4.529488
+  eval/episode_state/up_z: 962.809387
+  eval/sps: 3215.76
+  episode/sps: 4627.98
+
+[REWARD COMPONENTS]
+  eval/episode_reward/forward = 630.562256
+  eval/episode_reward/ctrl = -0.236052
+  eval/episode_reward/orient = -3.349557
+  eval/episode_reward/joint = -0.086602
+
+[TRAINING CURVE]
+  Step ~0: 56.738705
+  Step ~500000: 56.738705
+  Step ~1000000: -137.984131
+  Step ~2000000: 16.712955
+  Step ~3000000: 99.386322
+  Step ~4000000: -215.891113
+  Step ~5000000: 209.892059
+  Step ~6000000: 352.650269
+  Step ~8000000: 446.994995
+  Step ~10000000: 460.020935
+  Step ~12000000: 572.779907
+
+--- seed_29919 ---
+Final evaluation step: 25165824
+
+[FINAL EVALUATION METRICS]
+  eval/episode_reward: 647.162842
+  eval/episode_reward_std: 15.092583
+  eval/episode_state/forward_vel: 22.76981
+  eval/episode_state/up_z: 973.600891
+  eval/sps: 3428.69
+  episode/sps: 4913.71
+
+[REWARD COMPONENTS]
+  eval/episode_reward/forward = 649.912231
+  eval/episode_reward/ctrl = -0.234333
+  eval/episode_reward/orient = -2.45304
+  eval/episode_reward/joint = -0.061919
+
+[TRAINING CURVE]
+  Step ~0: -65.049988
+  Step ~500000: -65.049988
+  Step ~1000000: -725.098938
+  Step ~2000000: -456.83252
+  Step ~3000000: 212.118317
+  Step ~4000000: 242.796951
+  Step ~5000000: 498.29068
+  Step ~6000000: 602.690063
+  Step ~8000000: 609.250366
+  Step ~10000000: 576.740845
+  Step ~12000000: 617.582764
+
+--- seed_39892 ---
+Final evaluation step: 25165824
+
+[FINAL EVALUATION METRICS]
+  eval/episode_reward: 667.990112
+  eval/episode_reward_std: 27.356428
+  eval/episode_state/forward_vel: 40.978062
+  eval/episode_state/up_z: 946.123901
+  eval/sps: 3446.53
+  episode/sps: 5012.19
+
+[REWARD COMPONENTS]
+  eval/episode_reward/forward = 672.23291
+  eval/episode_reward/ctrl = -0.228975
+  eval/episode_reward/orient = -3.950243
+  eval/episode_reward/joint = -0.063508
+
+[TRAINING CURVE]
+  Step ~0: -628.459106
+  Step ~500000: -628.459106
+  Step ~1000000: -864.412354
+  Step ~2000000: -670.37146
+  Step ~3000000: -319.85495
+  Step ~4000000: 167.065323
+  Step ~5000000: 355.097656
+  Step ~6000000: 509.874207
+  Step ~8000000: 616.759033
+  Step ~10000000: 634.867432
+  Step ~12000000: 633.34082
+
+--- seed_9973 ---
+Final evaluation step: 25165824
+
+[FINAL EVALUATION METRICS]
+  eval/episode_reward: 666.539001
+  eval/episode_reward_std: 27.033745
+  eval/episode_state/forward_vel: 41.177078
+  eval/episode_state/up_z: 946.787598
+  eval/sps: 3320.75
+  episode/sps: 4794.72
+
+[REWARD COMPONENTS]
+  eval/episode_reward/forward = 671.450562
+  eval/episode_reward/ctrl = -0.241177
+  eval/episode_reward/orient = -4.579975
+  eval/episode_reward/joint = -0.090529
+
+[TRAINING CURVE]
+  Step ~0: 281.909882
+  Step ~500000: 281.909882
+  Step ~1000000: 292.17157
+  Step ~2000000: 497.170563
+  Step ~3000000: 516.37439
+  Step ~4000000: 595.027954
+  Step ~5000000: 598.403259
+  Step ~6000000: 541.319275
+  Step ~8000000: 601.356995
+  Step ~10000000: 508.203644
+  Step ~12000000: 625.712463
+
+================================================================================
+EXPERIMENT: vendor_tuned/brax/flat
+================================================================================
+
+--- seed_0 ---
+Final evaluation step: 30932992
+
+[FINAL EVALUATION METRICS]
+  eval/episode_reward: 405.25354
+  eval/episode_reward_std: 37.671051
+  eval/episode_state/forward_vel: 44.444885
+  eval/episode_state/up_z: 946.594971
+  eval/sps: 926.06
+  episode/sps: 4730.05
+
+[REWARD COMPONENTS]
+  eval/episode_reward/forward = 410.612946
+  eval/episode_reward/ctrl = -0.269844
+  eval/episode_reward/orient = -4.994805
+  eval/episode_reward/joint = -0.094674
+
+[TRAINING CURVE]
+  Step ~0: 272.429138
+  Step ~500000: 222.665634
+  Step ~1000000: 290.024841
+  Step ~2000000: 327.012085
+  Step ~3000000: 344.640747
+  Step ~4000000: 352.147888
+  Step ~5000000: 252.306702
+  Step ~6000000: 357.797974
+  Step ~8000000: 354.412903
+  Step ~10000000: 373.703369
+  Step ~12000000: 378.070496
+
+--- seed_19946 ---
+Final evaluation step: 30932992
+
+[FINAL EVALUATION METRICS]
+  eval/episode_reward: 304.673401
+  eval/episode_reward_std: 178.980576
+  eval/episode_state/forward_vel: 1.980512
+  eval/episode_state/up_z: 959.212402
+  eval/sps: 930.09
+  episode/sps: 4709.08
+
+[REWARD COMPONENTS]
+  eval/episode_reward/forward = 345.021667
+  eval/episode_reward/ctrl = -0.242966
+  eval/episode_reward/orient = -40.032555
+  eval/episode_reward/joint = -0.072719
+
+[TRAINING CURVE]
+  Step ~0: 36.730133
+  Step ~500000: -228.052567
+  Step ~1000000: -240.499146
+  Step ~2000000: -1051.628662
+  Step ~3000000: -646.552612
+  Step ~4000000: -472.733734
+  Step ~5000000: -338.622192
+  Step ~6000000: -94.97847
+  Step ~8000000: -18.260262
+  Step ~10000000: 112.357101
+  Step ~12000000: 284.355713
+
+--- seed_29919 ---
+Final evaluation step: 30932992
+
+[FINAL EVALUATION METRICS]
+  eval/episode_reward: 527.189209
+  eval/episode_reward_std: 200.914429
+  eval/episode_state/forward_vel: 160.583405
+  eval/episode_state/up_z: 951.998901
+  eval/sps: 943.25
+  episode/sps: 4853.48
+
+[REWARD COMPONENTS]
+  eval/episode_reward/forward = 554.530945
+  eval/episode_reward/ctrl = -0.260869
+  eval/episode_reward/orient = -26.997688
+  eval/episode_reward/joint = -0.083194
+
+[TRAINING CURVE]
+  Step ~0: -911.381958
+  Step ~500000: -838.954712
+  Step ~1000000: -1188.797363
+  Step ~2000000: -537.444092
+  Step ~3000000: -88.482605
+  Step ~4000000: 320.865723
+  Step ~5000000: 325.976013
+  Step ~6000000: 218.896973
+  Step ~8000000: 348.737366
+  Step ~10000000: 375.70932
+  Step ~12000000: 359.966309
+
+--- seed_39892 ---
+Final evaluation step: 30932992
+
+[FINAL EVALUATION METRICS]
+  eval/episode_reward: 332.676239
+  eval/episode_reward_std: 196.480133
+  eval/episode_state/forward_vel: 27.546278
+  eval/episode_state/up_z: 918.733521
+  eval/sps: 4406.26
+  episode/sps: 15812.41
+
+[REWARD COMPONENTS]
+  eval/episode_reward/forward = 386.828766
+  eval/episode_reward/ctrl = -0.25657
+  eval/episode_reward/orient = -53.808586
+  eval/episode_reward/joint = -0.087338
+
+[TRAINING CURVE]
+  Step ~0: -1052.932739
+  Step ~500000: -1291.947754
+  Step ~1000000: -970.962646
+  Step ~2000000: -471.503113
+  Step ~3000000: 176.362305
+  Step ~4000000: 268.578308
+  Step ~5000000: 296.490417
+  Step ~6000000: 346.624878
+  Step ~8000000: 341.37677
+  Step ~10000000: 373.921631
+  Step ~12000000: 318.81073
+
+--- seed_9973 ---
+Final evaluation step: 30932992
+
+[FINAL EVALUATION METRICS]
+  eval/episode_reward: 389.873047
+  eval/episode_reward_std: 115.114059
+  eval/episode_state/forward_vel: 42.17469
+  eval/episode_state/up_z: 957.835022
+  eval/sps: 992.32
+  episode/sps: 4980.81
+
+[REWARD COMPONENTS]
+  eval/episode_reward/forward = 408.912598
+  eval/episode_reward/ctrl = -0.242754
+  eval/episode_reward/orient = -18.725016
+  eval/episode_reward/joint = -0.071702
+
+[TRAINING CURVE]
+  Step ~0: -52.203823
+  Step ~500000: -213.100586
+  Step ~1000000: -216.503693
+  Step ~2000000: 71.917389
+  Step ~3000000: -79.230492
+  Step ~4000000: 200.106476
+  Step ~5000000: 299.298065
+  Step ~6000000: 218.566315
+  Step ~8000000: 328.709473
+  Step ~10000000: 97.046066
+  Step ~12000000: 214.153198
