@@ -25,7 +25,7 @@
     "normalize_obs": true
   },
   "env": {
-    "model_path": "/workspace/models/hexapod_static.xml",
+    "model_path": "/Hexy-s-Learning-Repo/models/hexapod_static.xml",
     "episode_length": 1000,
     "action_repeat": 1,
     "action_scale": 0.2,
