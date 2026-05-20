@@ -1,0 +1,4 @@
+num_envs,minibatch_size,mean_sps,min_sps,max_sps,n_samples,jit_seconds,status
+256,4096,17078.7,6524.1,18988.9,24,50,ok
+1024,16384,31730.9,17402.8,34992.2,13,50,ok
+2048,32768,,,,0,20,CRASH_JIT

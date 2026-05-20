@@ -1,0 +1,8 @@
+Failed to import warp: No module named 'warp'
+Failed to import mujoco_warp: No module named 'warp'
+/usr/local/lib/python3.11/site-packages/brax/io/mjcf.py:480: UserWarning: Brax System, piplines and environments are not actively being maintained. Please see MJX for a well maintained JAX-based physics engine: https://github.com/google-deepmind/mujoco/tree/main/mjx. For a host of environments that use MJX, see: https://github.com/google-deepmind/mujoco_playground.
+  warnings.warn(
+W0520 10:20:08.846938     159 gemm_fusion_autotuner.cc:1193] Compiling 13 configs for 3 fusions on a single thread.
+W0520 10:20:19.235438     159 gemm_fusion_autotuner.cc:1193] Compiling 11 configs for 3 fusions on a single thread.
+W0520 10:20:30.321945     159 gemm_fusion_autotuner.cc:1193] Compiling 19 configs for 6 fusions on a single thread.
+W0520 10:20:53.807217     159 gemm_fusion_autotuner.cc:1193] Compiling 82 configs for 18 fusions on a single thread.
