@@ -1,0 +1,225 @@
+Failed to import warp: No module named 'warp'
+Failed to import mujoco_warp: No module named 'warp'
+/usr/local/lib/python3.11/site-packages/brax/io/mjcf.py:480: UserWarning: Brax System, piplines and environments are not actively being maintained. Please see MJX for a well maintained JAX-based physics engine: https://github.com/google-deepmind/mujoco/tree/main/mjx. For a host of environments that use MJX, see: https://github.com/google-deepmind/mujoco_playground.
+  warnings.warn(
+GPU coredump: execvp failed: No such file or directory
+Failed to write segment data to pipe: Broken pipe
+GPU coredump: handler exited with error (status: 1)
+GPU core dump failed
+Kernel Name: loop_add_transpose_fusion
+VGPU=0x73e658003bb0 SWq=0x73f1c0c28000, HWq=0x73efa8100000, id=1
+	Dispatch Header =0xb02 (type=2, barrier=1, acquire=1, release=1), setup=0
+	grid=[36864, 1, 1], workgroup=[256, 1, 1]
+	private_seg_size=0, group_seg_size=0
+	kernel_obj=0x73efc8479f40, kernarg_address=0x0x73eee0204100
+	completion_signal=0x0, correlation_id=0
+	rptr=5424, wptr=5505
+ Kernel Name: loop_add_transpose_fusion
+VGPU=0x562207749400 SWq=0x73f1c0c28000, HWq=0x73efa8100000, id=1
+	Dispatch Header =0xb02 (type=2, barrier=1, acquire=1, release=1), setup=0
+	grid=[36864, 1, 1], workgroup=[256, 1, 1]
+	private_seg_size=0, group_seg_size=0
+	kernel_obj=0x73efc8479f40, kernarg_address=0x0x73eee0204100
+	completion_signal=0x0, correlation_id=0
+	rptr=5424, wptr=5505
+ Kernel Name: loop_add_transpose_fusion
+VGPU=0x562209b8b860 SWq=0x73f1c0c28000, HWq=0x73efa8100000, id=1
+	Dispatch Header =0xb02 (type=2, barrier=1, acquire=1, release=1), setup=0
+	grid=[36864, 1, 1], workgroup=[256, 1, 1]
+	private_seg_size=0, group_seg_size=0
+	kernel_obj=0x73efc8479f40, kernarg_address=0x0x73eee0204100
+	completion_signal=0x0, correlation_id=0
+	rptr=5424, wptr=5505
+ Kernel Name: loop_add_transpose_fusion
+VGPU=0x562209b93850 SWq=0x73f1c0c28000, HWq=0x73efa8100000, id=1
+	Dispatch Header =0xb02 (type=2, barrier=1, acquire=1, release=1), setup=0
+	grid=[36864, 1, 1], workgroup=[256, 1, 1]
+	private_seg_size=0, group_seg_size=0
+	kernel_obj=0x73efc8479f40, kernarg_address=0x0x73eee0204100
+	completion_signal=0x0, correlation_id=0
+	rptr=5424, wptr=5505
+ Kernel Name: loop_add_transpose_fusion
+VGPU=0x562209b9a540 SWq=0x73f1c0c28000, HWq=0x73efa8100000, id=1
+	Dispatch Header =0xb02 (type=2, barrier=1, acquire=1, release=1), setup=0
+	grid=[36864, 1, 1], workgroup=[256, 1, 1]
+	private_seg_size=0, group_seg_size=0
+	kernel_obj=0x73efc8479f40, kernarg_address=0x0x73eee0204100
+	completion_signal=0x0, correlation_id=0
+	rptr=5424, wptr=5505
+ Kernel Name: loop_add_transpose_fusion
+VGPU=0x562209ba19d0 SWq=0x73f1c0c28000, HWq=0x73efa8100000, id=1
+	Dispatch Header =0xb02 (type=2, barrier=1, acquire=1, release=1), setup=0
+	grid=[36864, 1, 1], workgroup=[256, 1, 1]
+	private_seg_size=0, group_seg_size=0
+	kernel_obj=0x73efc8479f40, kernarg_address=0x0x73eee0204100
+	completion_signal=0x0, correlation_id=0
+	rptr=5424, wptr=5505
+ Kernel Name: loop_add_transpose_fusion
+VGPU=0x562209ba8d20 SWq=0x73f1c0c28000, HWq=0x73efa8100000, id=1
+	Dispatch Header =0xb02 (type=2, barrier=1, acquire=1, release=1), setup=0
+	grid=[36864, 1, 1], workgroup=[256, 1, 1]
+	private_seg_size=0, group_seg_size=0
+	kernel_obj=0x73efc8479f40, kernarg_address=0x0x73eee0204100
+	completion_signal=0x0, correlation_id=0
+	rptr=5424, wptr=5505
+ Kernel Name: loop_add_transpose_fusion
+VGPU=0x562209bb00f0 SWq=0x73f1c0c28000, HWq=0x73efa8100000, id=1
+	Dispatch Header =0xb02 (type=2, barrier=1, acquire=1, release=1), setup=0
+	grid=[36864, 1, 1], workgroup=[256, 1, 1]
+	private_seg_size=0, group_seg_size=0
+	kernel_obj=0x73efc8479f40, kernarg_address=0x0x73eee0204100
+	completion_signal=0x0, correlation_id=0
+	rptr=5424, wptr=5505
+ Kernel Name: loop_add_transpose_fusion
+VGPU=0x562209bb74d0 SWq=0x73f1c0c28000, HWq=0x73efa8100000, id=1
+	Dispatch Header =0xb02 (type=2, barrier=1, acquire=1, release=1), setup=0
+	grid=[36864, 1, 1], workgroup=[256, 1, 1]
+	private_seg_size=0, group_seg_size=0
+	kernel_obj=0x73efc8479f40, kernarg_address=0x0x73eee0204100
+	completion_signal=0x0, correlation_id=0
+	rptr=5424, wptr=5505
+ Kernel Name: loop_add_transpose_fusion
+VGPU=0x562209bbe8c0 SWq=0x73f1c0c28000, HWq=0x73efa8100000, id=1
+	Dispatch Header =0xb02 (type=2, barrier=1, acquire=1, release=1), setup=0
+	grid=[36864, 1, 1], workgroup=[256, 1, 1]
+	private_seg_size=0, group_seg_size=0
+	kernel_obj=0x73efc8479f40, kernarg_address=0x0x73eee0204100
+	completion_signal=0x0, correlation_id=0
+	rptr=5424, wptr=5505
+ Kernel Name: loop_add_transpose_fusion
+VGPU=0x562209bc5bf0 SWq=0x73f1c0c28000, HWq=0x73efa8100000, id=1
+	Dispatch Header =0xb02 (type=2, barrier=1, acquire=1, release=1), setup=0
+	grid=[36864, 1, 1], workgroup=[256, 1, 1]
+	private_seg_size=0, group_seg_size=0
+	kernel_obj=0x73efc8479f40, kernarg_address=0x0x73eee0204100
+	completion_signal=0x0, correlation_id=0
+	rptr=5424, wptr=5505
+ Kernel Name: loop_add_transpose_fusion
+VGPU=0x562209bccfa0 SWq=0x73f1c0c28000, HWq=0x73efa8100000, id=1
+	Dispatch Header =0xb02 (type=2, barrier=1, acquire=1, release=1), setup=0
+	grid=[36864, 1, 1], workgroup=[256, 1, 1]
+	private_seg_size=0, group_seg_size=0
+	kernel_obj=0x73efc8479f40, kernarg_address=0x0x73eee0204100
+	completion_signal=0x0, correlation_id=0
+	rptr=5424, wptr=5505
+ Kernel Name: loop_add_transpose_fusion
+VGPU=0x562209bd43a0 SWq=0x73f1c0c28000, HWq=0x73efa8100000, id=1
+	Dispatch Header =0xb02 (type=2, barrier=1, acquire=1, release=1), setup=0
+	grid=[36864, 1, 1], workgroup=[256, 1, 1]
+	private_seg_size=0, group_seg_size=0
+	kernel_obj=0x73efc8479f40, kernarg_address=0x0x73eee0204100
+	completion_signal=0x0, correlation_id=0
+	rptr=5424, wptr=5505
+ Kernel Name: loop_add_transpose_fusion
+VGPU=0x562209bdb770 SWq=0x73f1c0c28000, HWq=0x73efa8100000, id=1
+	Dispatch Header =0xb02 (type=2, barrier=1, acquire=1, release=1), setup=0
+	grid=[36864, 1, 1], workgroup=[256, 1, 1]
+	private_seg_size=0, group_seg_size=0
+	kernel_obj=0x73efc8479f40, kernarg_address=0x0x73eee0204100
+	completion_signal=0x0, correlation_id=0
+	rptr=5424, wptr=5505
+ Kernel Name: loop_add_transpose_fusion
+VGPU=0x562209be2b20 SWq=0x73f1c0c28000, HWq=0x73efa8100000, id=1
+	Dispatch Header =0xb02 (type=2, barrier=1, acquire=1, release=1), setup=0
+	grid=[36864, 1, 1], workgroup=[256, 1, 1]
+	private_seg_size=0, group_seg_size=0
+	kernel_obj=0x73efc8479f40, kernarg_address=0x0x73eee0204100
+	completion_signal=0x0, correlation_id=0
+	rptr=5424, wptr=5505
+ Kernel Name: loop_add_transpose_fusion
+VGPU=0x562209be9f70 SWq=0x73f1c0c28000, HWq=0x73efa8100000, id=1
+	Dispatch Header =0xb02 (type=2, barrier=1, acquire=1, release=1), setup=0
+	grid=[36864, 1, 1], workgroup=[256, 1, 1]
+	private_seg_size=0, group_seg_size=0
+	kernel_obj=0x73efc8479f40, kernarg_address=0x0x73eee0204100
+	completion_signal=0x0, correlation_id=0
+	rptr=5424, wptr=5505
+ Kernel Name: loop_add_transpose_fusion
+VGPU=0x562209bf1510 SWq=0x73f1c0c28000, HWq=0x73efa8100000, id=1
+	Dispatch Header =0xb02 (type=2, barrier=1, acquire=1, release=1), setup=0
+	grid=[36864, 1, 1], workgroup=[256, 1, 1]
+	private_seg_size=0, group_seg_size=0
+	kernel_obj=0x73efc8479f40, kernarg_address=0x0x73eee0204100
+	completion_signal=0x0, correlation_id=0
+	rptr=5424, wptr=5505
+ Kernel Name: loop_add_transpose_fusion
+VGPU=0x562209bf8830 SWq=0x73f1c0c28000, HWq=0x73efa8100000, id=1
+	Dispatch Header =0xb02 (type=2, barrier=1, acquire=1, release=1), setup=0
+	grid=[36864, 1, 1], workgroup=[256, 1, 1]
+	private_seg_size=0, group_seg_size=0
+	kernel_obj=0x73efc8479f40, kernarg_address=0x0x73eee0204100
+	completion_signal=0x0, correlation_id=0
+	rptr=5424, wptr=5505
+ Kernel Name: loop_add_transpose_fusion
+VGPU=0x562209bffbe0 SWq=0x73f1c0c28000, HWq=0x73efa8100000, id=1
+	Dispatch Header =0xb02 (type=2, barrier=1, acquire=1, release=1), setup=0
+	grid=[36864, 1, 1], workgroup=[256, 1, 1]
+	private_seg_size=0, group_seg_size=0
+	kernel_obj=0x73efc8479f40, kernarg_address=0x0x73eee0204100
+	completion_signal=0x0, correlation_id=0
+	rptr=5424, wptr=5505
+ Kernel Name: loop_add_transpose_fusion
+VGPU=0x56220b9a46e0 SWq=0x73f1c0c28000, HWq=0x73efa8100000, id=1
+	Dispatch Header =0xb02 (type=2, barrier=1, acquire=1, release=1), setup=0
+	grid=[36864, 1, 1], workgroup=[256, 1, 1]
+	private_seg_size=0, group_seg_size=0
+	kernel_obj=0x73efc8479f40, kernarg_address=0x0x73eee0204100
+	completion_signal=0x0, correlation_id=0
+	rptr=5424, wptr=5505
+ Kernel Name: loop_add_transpose_fusion
+VGPU=0x73e5c00028c0 SWq=0x73f1c0c28000, HWq=0x73efa8100000, id=1
+	Dispatch Header =0xb02 (type=2, barrier=1, acquire=1, release=1), setup=0
+	grid=[36864, 1, 1], workgroup=[256, 1, 1]
+	private_seg_size=0, group_seg_size=0
+	kernel_obj=0x73efc8479f40, kernarg_address=0x0x73eee0204100
+	completion_signal=0x0, correlation_id=0
+	rptr=5424, wptr=5505
+ Kernel Name: loop_add_transpose_fusion
+VGPU=0x73e59c0c75a0 SWq=0x73f1c0c28000, HWq=0x73efa8100000, id=1
+	Dispatch Header =0xb02 (type=2, barrier=1, acquire=1, release=1), setup=0
+	grid=[36864, 1, 1], workgroup=[256, 1, 1]
+	private_seg_size=0, group_seg_size=0
+	kernel_obj=0x73efc8479f40, kernarg_address=0x0x73eee0204100
+	completion_signal=0x0, correlation_id=0
+	rptr=5424, wptr=5505
+ Kernel Name: loop_add_transpose_fusion
+VGPU=0x56220bce7160 SWq=0x73f1c0c28000, HWq=0x73efa8100000, id=1
+	Dispatch Header =0xb02 (type=2, barrier=1, acquire=1, release=1), setup=0
+	grid=[36864, 1, 1], workgroup=[256, 1, 1]
+	private_seg_size=0, group_seg_size=0
+	kernel_obj=0x73efc8479f40, kernarg_address=0x0x73eee0204100
+	completion_signal=0x0, correlation_id=0
+	rptr=5424, wptr=5505
+ Kernel Name: loop_add_transpose_fusion
+VGPU=0x73e5e80068b0 SWq=0x73f1c0c28000, HWq=0x73efa8100000, id=1
+	Dispatch Header =0xb02 (type=2, barrier=1, acquire=1, release=1), setup=0
+	grid=[36864, 1, 1], workgroup=[256, 1, 1]
+	private_seg_size=0, group_seg_size=0
+	kernel_obj=0x73efc8479f40, kernarg_address=0x0x73eee0204100
+	completion_signal=0x0, correlation_id=0
+	rptr=5424, wptr=5505
+ Kernel Name: loop_add_transpose_fusion
+VGPU=0x73e5f4006840 SWq=0x73f1c0c28000, HWq=0x73efa8100000, id=1
+	Dispatch Header =0xb02 (type=2, barrier=1, acquire=1, release=1), setup=0
+	grid=[36864, 1, 1], workgroup=[256, 1, 1]
+	private_seg_size=0, group_seg_size=0
+	kernel_obj=0x73efc8479f40, kernarg_address=0x0x73eee0204100
+	completion_signal=0x0, correlation_id=0
+	rptr=5424, wptr=5505
+ Kernel Name: loop_add_transpose_fusion
+VGPU=0x73e5e800d8b0 SWq=0x73f1c0c28000, HWq=0x73efa8100000, id=1
+	Dispatch Header =0xb02 (type=2, barrier=1, acquire=1, release=1), setup=0
+	grid=[36864, 1, 1], workgroup=[256, 1, 1]
+	private_seg_size=0, group_seg_size=0
+	kernel_obj=0x73efc8479f40, kernarg_address=0x0x73eee0204100
+	completion_signal=0x0, correlation_id=0
+	rptr=5424, wptr=5505
+ Kernel Name: loop_add_transpose_fusion
+VGPU=0x73e5e4003e70 SWq=0x73f1c0c28000, HWq=0x73efa8100000, id=1
+	Dispatch Header =0xb02 (type=2, barrier=1, acquire=1, release=1), setup=0
+	grid=[36864, 1, 1], workgroup=[256, 1, 1]
+	private_seg_size=0, group_seg_size=0
+	kernel_obj=0x73efc8479f40, kernarg_address=0x0x73eee0204100
+	completion_signal=0x0, correlation_id=0
+	rptr=5424, wptr=5505
+ :0:rocdevice.cpp            :3586: 2313855752 us:  Callback: Queue 0x73efa8100000 aborting with error : HSA_STATUS_ERROR_MEMORY_APERTURE_VIOLATION: The agent attempted to access memory beyond the largest legal address. code: 0x29
