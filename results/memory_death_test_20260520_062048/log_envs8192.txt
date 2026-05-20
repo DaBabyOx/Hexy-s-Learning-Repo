@@ -1,0 +1,16 @@
+Failed to import warp: No module named 'warp'
+Failed to import mujoco_warp: No module named 'warp'
+WARNING:jax._src.xla_bridge:An NVIDIA GPU may be present on this machine, but a CUDA-enabled jaxlib is not installed. Falling back to cpu.
+/usr/local/lib/python3.12/dist-packages/brax/io/mjcf.py:480: UserWarning: Brax System, piplines and environments are not actively being maintained. Please see MJX for a well maintained JAX-based physics engine: https://github.com/google-deepmind/mujoco/tree/main/mjx. For a host of environments that use MJX, see: https://github.com/google-deepmind/mujoco_playground.
+  warnings.warn(
+OpenBLAS warning: precompiled NUM_THREADS exceeded, adding auxiliary array for thread metadata.
+To avoid this warning, please rebuild your copy of OpenBLAS with a larger NUM_THREADS setting
+or set the environment variable OPENBLAS_NUM_THREADS to 64 or lower
+OpenBLAS : Program is Terminated. Because you tried to allocate too many memory regions.
+This library was built to support a maximum of 128 threads - either rebuild OpenBLAS
+with a larger NUM_THREADS value or set the environment variable OPENBLAS_NUM_THREADS to
+a sufficiently small number. This error typically occurs when the software that relies on
+OpenBLAS calls BLAS functions from many threads in parallel, or when your computer has more
+cpu cores than what OpenBLAS was configured to handle.
+BLAS : Bad memory unallocation! :  640  0x74d2b1e00000
+malloc(): corrupted top size
