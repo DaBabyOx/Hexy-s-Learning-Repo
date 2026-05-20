@@ -1,0 +1,52 @@
+{
+  "backend": "brax",
+  "seed": 29919,
+  "policy": {
+    "hidden_sizes": [
+      256,
+      256
+    ],
+    "activation": "tanh",
+    "log_std_init": -0.5
+  },
+  "ppo": {
+    "total_steps": 12000000,
+    "num_envs": 512,
+    "rollout_length": 128,
+    "update_epochs": 4,
+    "minibatch_size": 8192,
+    "learning_rate": 0.0003,
+    "gamma": 0.99,
+    "gae_lambda": 0.95,
+    "clip_epsilon": 0.2,
+    "vf_coef": 0.5,
+    "ent_coef": 0.01,
+    "max_grad_norm": 0.5,
+    "normalize_obs": true
+  },
+  "env": {
+    "model_path": "/Hexy-s-Learning-Repo/models/hexapod_static.xml",
+    "episode_length": 1000,
+    "action_repeat": 1,
+    "action_scale": 0.2,
+    "target_velocity": 0.8,
+    "ctrl_cost": 0.02,
+    "orient_cost": 1.0,
+    "joint_limit_cost": 0.2,
+    "alive_bonus": 0.0,
+    "reset_noise": 0.1,
+    "terrain": "flat",
+    "heightfield": {
+      "size": [
+        4.0,
+        4.0
+      ],
+      "field_res": [
+        48,
+        48
+      ],
+      "height_scale": 0.06,
+      "seed": 123
+    }
+  }
+}
